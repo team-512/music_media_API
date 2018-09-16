@@ -1,6 +1,6 @@
 # music_media_API
 
-RESTful API for Music Media Project using Django with Tastypie
+REST API for Music Media Project using Django with Tastypie
 
 Music Media (working name) is a social media platform based on bridging the gap between Spotify and Apple Music while also filling the role that is noticeably missing from the cast of popular apps - a platform entirely dedicated to the sharing and curating of songs.
 
