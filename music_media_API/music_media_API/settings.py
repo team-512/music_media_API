@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,3 +123,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'api.CustomUser'
+
+CORS_ORIGIN_WHITELIST = (
+    'akseltaylan.pythonanywhere.com'
+    'localhost:8000',
+    '127.0.0.1:9000'
+)
+
+CSRF_TRUSTED_ORIGINS = (
+    'akseltaylan.pythonanywhere.com',
+)

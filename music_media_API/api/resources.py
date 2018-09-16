@@ -1,5 +1,5 @@
 from tastypie.resources import ModelResource
-from api.models import Note, Music, CustomUser, Artist, Album, Song
+from api.models import Note, CustomUser, Song
 from django.contrib.auth.models import User
 from tastypie.authentication import Authentication, BasicAuthentication
 from tastypie.authorization import Authorization
@@ -9,7 +9,7 @@ class UserResource(ModelResource):
     class Meta:
         queryset = CustomUser.objects.all()
         object_class = CustomUser
-        fields = ['username', 'artists', 'photo', 'bio', 'userId']
+        fields = ['username', 'musicLikes', 'photo', 'bio', 'userId']
         allowed_methods = ['get', 'post']
         resource_name = 'user'
         excludes = ['email', 'password', 'is_superuser']
@@ -23,25 +23,11 @@ class UserResource(ModelResource):
         except IntegrityError:
             raise BadRequest('That username already exists')
         return bundle
-
-class ArtistResource(ModelResource):
-    class Meta:
-        queryset = Artist.objects.all()
-        resource_name = 'artist'
-        authorization = Authorization() # remove when deploying
-
-class AlbumResource(ModelResource):
-    artist = fields.ForeignKey(ArtistResource, 'artist')
-
-    class Meta:
-        queryset = Album.objects.all()
-        resource_name = 'album'
-        authorization = Authorization() # remove when deploying
+    
+    def getUserById(idRequest):
+        return 0
 
 class SongResource(ModelResource):
-    artist = fields.ForeignKey(ArtistResource, 'artist')
-    album = fields.ForeignKey(AlbumResource, 'album')
-
     class Meta:
         queryset = Song.objects.all()
         resource_name = 'song'
