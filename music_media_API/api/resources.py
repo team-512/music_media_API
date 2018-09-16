@@ -1,5 +1,5 @@
 from tastypie.resources import ModelResource
-from api.models import Note, CustomUser, Artist, Album, Song
+from api.models import Note, Music, CustomUser, Artist, Album, Song
 from django.contrib.auth.models import User
 from tastypie.authentication import Authentication, BasicAuthentication
 from tastypie.authorization import Authorization
