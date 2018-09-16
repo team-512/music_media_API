@@ -6,5 +6,5 @@ Music Media (working name) is a social media platform based on bridging the gap 
 
 Initially developed in under 24 hours as part of the inaguaral Howdy Hack competition at Texas A&M University.
 
-Tastypie documentation: https://django-tastypie.readthedocs.io/en/latest/toc.html
+Tastypie documentation: https://django-tastypie.readthedocs.io/en/latest/toc.html /n
 Django documentation: https://docs.djangoproject.com/en/2.1/
