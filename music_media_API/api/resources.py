@@ -9,11 +9,12 @@ class UserResource(ModelResource):
     class Meta:
         queryset = CustomUser.objects.all()
         object_class = CustomUser
-        fields = ['username', 'email']
+        fields = ['username', 'artists', 'photo', 'bio', 'userId']
         allowed_methods = ['get', 'post']
         resource_name = 'user'
         excludes = ['email', 'password', 'is_superuser']
         authentication = Authentication()
+        authorization = Authorization() # remove when deploying
 
     def obj_create(self, bundle, request=None, **kwargs):
         username, password = bundle.data['username'], bundle.data['password']
@@ -27,6 +28,7 @@ class ArtistResource(ModelResource):
     class Meta:
         queryset = Artist.objects.all()
         resource_name = 'artist'
+        authorization = Authorization() # remove when deploying
 
 class AlbumResource(ModelResource):
     artist = fields.ForeignKey(ArtistResource, 'artist')
@@ -34,6 +36,7 @@ class AlbumResource(ModelResource):
     class Meta:
         queryset = Album.objects.all()
         resource_name = 'album'
+        authorization = Authorization() # remove when deploying
 
 class SongResource(ModelResource):
     artist = fields.ForeignKey(ArtistResource, 'artist')
