@@ -7,6 +7,7 @@ from api.managers import AlbumManager, SongManager
 class CustomUser(AbstractUser):
     # followers, following, liked artists, genres
     artists = models.TextField()
+    userId = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.username
