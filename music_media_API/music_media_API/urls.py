@@ -1,28 +1,25 @@
 """music_media_API URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.10/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
 from django.contrib import admin
 from api.resources import *
+from tastypie.api import Api
 
+from django.http import HttpResponse
+
+
+def empty_view(request):
+    return HttpResponse("Empty View")
+
+v1_api = Api(api_name='v1')
 note_resource = NoteResource()
 user_resource = UserResource()
+v1_api.register(note_resource)
+v1_api.register(user_resource)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(note_resource.urls)),
-    url(r'^api/', include(user_resource.urls)),
-    url(r'', include(user_resource.urls)),
+    url(r'^api/', include(v1_api.urls)),
+    url('', empty_view, name='empty_view'),
 ]
+
